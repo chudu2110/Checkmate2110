@@ -1,48 +1,22 @@
-## Checkmate2110 – Chess Puzzle Player (Next.js)
+# Checkmate2110 – Chess Puzzle Player (Next.js)
 
-Checkmate2110 là ứng dụng chơi và luyện tập các bài toán chiếu hết (mate-in-N) với giao diện hiện đại, tối ưu cho web tĩnh. Dự án sử dụng Next.js 14, TailwindCSS, và `react-chessboard`. Mặc định giao diện tối (dark mode) và có nút đổi theme ở phần Play.
+A minimal Next.js app for mate‑in‑N chess puzzles.
 
-### Tính năng chính
-- Trang Intro: nền cosmos, chessboard 3D và ghi chú "for @tocosac" cố định đáy.
-- Trang Play: chơi puzzle với `react-chessboard`, highlight nước đi, theme tối mặc định.
-- Xuất tĩnh sang thư mục `out/` để deploy dễ dàng (Netlify, GitHub Pages, v.v.).
+**Features**
+- Intro page with an animated/3D chess scene.
+- Play page with an interactive board, move highlights, and default dark mode.
 
-### Cấu trúc chính
-- `src/app`: cấu trúc routes Next.js (`/intro`, `/play`, layout, globals.css).
-- `src/components`: các component UI (chess-board, chess-trainer, global-chrome, theme-toggle...).
-- `src/lib/problems-adapter.ts`: ánh xạ dữ liệu từ `problems.json` thành cấu trúc Puzzle dùng trong app.
-- `problems.json`: dữ liệu puzzle gốc (giữ lại, được app đọc trực tiếp).
+**How It Works**
+- Puzzles are loaded from `problems.json`.
+- Data is adapted to the app via `src/lib/problems-adapter.ts`.
+- Static export is enabled (`output: 'export'`), files are written to `out/`.
 
-### Yêu cầu
-- Node.js 18+.
-- NPM hoặc Yarn.
+**Quick Start**
+- Requirements: Node.js 18+
+- Install: `npm install`
+- Develop: `npm run dev` then open `http://localhost:3000/intro` and `http://localhost:3000/play`
+- Build static: `npm run build` → check `out/intro` and `out/play`
 
-### Cài đặt và chạy (dev)
-Sao chép lệnh bên dưới:
-
-```
-npm install
-npm run dev -- --port 3001
-```
-
-Mở `http://localhost:3001/intro` hoặc `http://localhost:3001/play`.
-
-### Build & Export tĩnh
-Xuất site tĩnh vào thư mục `out/`:
-
-```
-npm run build
-```
-
-Do `next.config.js` đang `output: 'export'`, lệnh build sẽ tạo nội dung tĩnh trong `out/`. Không cần chạy `next export`.
-
-### Triển khai tĩnh (Netlify / GH Pages)
-- Netlify: file `netlify.toml` đã cấu hình `publish = "out"`. Bạn có thể drag-and-drop hoặc dùng build hook.
-- GitHub Pages: deploy nội dung `out/` lên branch gh-pages.
-
-### Ghi chú & dọn dẹp
-- Repo giữ NGUYÊN toàn bộ mã nguồn dự án. Không xóa các phần đang hoạt động.
-- Nếu cần dọn dẹp, chỉ xóa các file không ảnh hưởng hoạt động web theo yêu cầu.
-
----
-Made with Next.js, TailwindCSS, and react-chessboard.
+**Deploy**
+- Netlify: `netlify.toml` publishes `out/`.
+- GitHub Pages: publish the contents of `out/`.
