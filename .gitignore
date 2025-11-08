@@ -66,10 +66,4 @@ typings/
 # next.js build output
 .next
 
-# static export output
-out/
-
-# archive artifacts
-*.zip
-
 
