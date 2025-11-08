@@ -1,0 +1,56 @@
+.canvasContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 38svh;
+  overflow: hidden;
+}
+
+.canvasMount {
+  position: absolute;
+  inset: 0;
+}
+
+.overlay { display: none; }
+
+.title {
+  font-family: var(--font-headline, inherit);
+  font-weight: 700;
+  font-size: clamp(28px, 6vw, 56px);
+  color: hsl(var(--foreground));
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  color: hsl(var(--muted-foreground));
+  font-size: clamp(14px, 2.5vw, 18px);
+}
+
+.skeletonWrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.2);
+  border-top-color: hsl(var(--primary));
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loadingText {
+  color: hsl(var(--muted-foreground));
+  font-size: 14px;
+}
