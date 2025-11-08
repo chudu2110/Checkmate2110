@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 56% 91.2%; /* beige #F5F5DC */
+    --foreground: 20 14.3% 4.1%; /* a dark brown */
+    --card: 60 56% 91.2%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 60 50% 96%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 348 100% 25.1%; /* burgundy #800020 */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 348 30% 85%;
+    --secondary-foreground: 348 100% 25.1%;
+    --muted: 348 30% 92%;
+    --muted-foreground: 20 9% 45.1%;
+    --accent: 120 60.4% 33.9%; /* forest green #228B22 */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 348 20% 80%;
+    --input: 348 20% 88%;
+    --ring: 348 90% 40%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 98%;
+    /* Make surfaces slightly lighter than background for contrast */
+    --card: 220 15% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 220 15% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 348 80% 50%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 220 15% 18%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 120 50% 50%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 15% 25%;
+    --input: 220 15% 20%;
+    --ring: 348 80% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Cosmic dark mode background */
+.cosmic-bg { display: none; }
+.dark .cosmic-bg {
+  display: block;
+  background-color: #000;
+  background-image: radial-gradient(ellipse at center, #0b0d14 0%, #000 65%);
+}
+
+/* Intro-specific background: visible regardless of theme, with orbiting stars */
+.cosmic-bg.intro-bg {
+  display: block;
+  background-color: #000;
+  background-image: none; /* nền đen tuyệt đối cho intro */
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.25; }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Reverse spin for varied orbital motion */
+@keyframes spinRev {
+  0% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(-360deg) scale(1); }
+}
+
+/* Star layers with slight differences for depth */
+.dark .cosmic-bg .stars {
+  background-image:
+    radial-gradient(#ffffff 1px, transparent 1px),
+    radial-gradient(#ffffff 1px, transparent 1px);
+  background-repeat: repeat;
+  animation: twinkle 4s infinite ease-in-out;
+  opacity: 0.8;
+}
+
+/* Intro: apply twinkle + spin regardless of theme */
+.cosmic-bg.intro-bg .stars {
+  background-image:
+    radial-gradient(#ffffff 1px, transparent 1px),
+    radial-gradient(#ffffff 1px, transparent 1px);
+  background-repeat: repeat;
+  animation: twinkle 4s ease-in-out infinite;
+  opacity: 0.98; /* tăng nhẹ độ sáng cho intro */
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+
+.dark .cosmic-bg .stars-1 {
+  background-size: 200px 200px, 160px 160px;
+  background-position: 0 0, 90px 130px;
+}
+.cosmic-bg.intro-bg .stars-1 {
+  background-size: 280px 223px, 220px 173px; /* phóng to để giảm pattern ô vuông */
+  background-position: 0 0, 95px 135px;
+  animation: twinkle 4s ease-in-out infinite, spin 120s linear infinite;
+}
+
+.dark .cosmic-bg .stars-2 {
+  background-size: 250px 250px, 180px 180px;
+  background-position: 40px 120px, 160px 60px;
+  animation-duration: 6s;
+  opacity: 0.6;
+}
+.cosmic-bg.intro-bg .stars-2 {
+  background-size: 340px 271px, 260px 197px; /* phóng to để tự nhiên hơn */
+  background-position: 44px 124px, 168px 66px;
+  animation: twinkle 6s ease-in-out infinite, spin 160s linear infinite;
+  opacity: 0.83; /* tăng sáng nhẹ */
+}
+
+.dark .cosmic-bg .stars-3 {
+  background-size: 300px 300px, 200px 200px;
+  background-position: 90px 30px, 30px 90px;
+  animation-duration: 8s;
+  opacity: 0.5;
+}
+.cosmic-bg.intro-bg .stars-3 {
+  background-size: 420px 311px, 300px 223px; /* phóng to rõ rệt */
+  background-position: 92px 34px, 36px 96px;
+  animation: twinkle 8s ease-in-out infinite, spin 200s linear infinite;
+  opacity: 0.76; /* tăng sáng nhẹ */
+}
+
+/* Lớp bổ sung để tăng mật độ tổng thể */
+.cosmic-bg.intro-bg .stars-4 {
+  background-image:
+    radial-gradient(#ffffff 1px, transparent 1px),
+    radial-gradient(#ffffff 1px, transparent 1px);
+  background-repeat: repeat;
+  background-size: 260px 211px, 220px 179px; /* phóng to để tránh vân ô */
+  background-position: 20px 60px, 140px 40px;
+  animation: twinkle 5s ease-in-out infinite, spin 90s linear infinite;
+  opacity: 0.78; /* tăng sáng nhẹ */
+}
+
+/* Lớp bổ sung để tăng mật độ và hiệu ứng quỹ đạo */
+.cosmic-bg.intro-bg .stars-5 {
+  background-image:
+    radial-gradient(#ffffff 1px, transparent 1px),
+    radial-gradient(#ffffff 1px, transparent 1px);
+  background-repeat: repeat;
+  background-size: 320px 257px, 240px 191px; /* phóng to pattern */
+  background-position: 70px 20px, 30px 160px;
+  animation: twinkle 10s ease-in-out infinite, spin 240s linear infinite;
+  opacity: 0.86; /* tăng sáng nhẹ */
+}
+
+.cosmic-bg.intro-bg .stars-6 {
+  background-image:
+    radial-gradient(#ffffff 1px, transparent 1px),
+    radial-gradient(#ffffff 1px, transparent 1px);
+  background-repeat: repeat;
+  background-size: 230px 179px, 180px 139px; /* phóng to lớp dày nhất */
+  background-position: 10px 10px, 100px 90px;
+  animation: twinkle 12s ease-in-out infinite, spinRev 300s linear infinite;
+  opacity: 0.88; /* tăng sáng nhẹ */
+}

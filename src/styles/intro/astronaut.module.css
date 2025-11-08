@@ -1,0 +1,18 @@
+.container {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80vw, 720px);
+  height: min(40svh, 380px);
+  pointer-events: auto; /* cho phép kéo xoay với OrbitControls */
+  z-index: 0; /* nằm sau brand/nút */
+}
+
+@media (max-width: 768px) {
+  .container {
+    top: 8%;
+    width: 88vw;
+    height: 32svh;
+  }
+}
